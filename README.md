@@ -6,7 +6,7 @@ Here you will find code examples to start using the Helix Sandbox with the most 
 
 This tutorial can help you to understand the most popular REST methods used on CEF Context Broker:
 
-#### :one: Creating a Temperature and Humidity Sensor with DHT 22 and NodeMCU ESP8266 v2/v3:
+#### :one: Creating a Temperature and Humidity Sensor with DHT 11 and NodeMCU ESP8266 v2/v3:
 
 #### About
 
@@ -25,17 +25,21 @@ You can use the Arduino IDE to create the code for your NodeMCU.
 #include "DHT.h"
 #include <math.h>
 #include <Adafruit_Sensor.h>
-#define DHTTYPE DHT22   
+#define DHTTYPE DHT11   
 #define dht_dpin D1
 #define LED_BUILTIN 2
 
+//Helix IP Address 
 const char* orionAddressPath = "IP_HELIX:1026/v2";
+
+//Device ID (example: urn:ngsi-ld:sensor:0001) 
 const char* deviceID = "ID_DEVICE";
 
+//Wi-Fi Credentials
 const char* ssid = "SSID"; 
 const char* password = "PASSWORD";
 
-//variáveis globais
+//global variables
 int medianTemperature;
 float totalTemperature;
 int medianHumidity;
@@ -51,10 +55,10 @@ void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
   Serial.begin(9600);
   
-  //iniciar sensor DHT
+  //start sensor DHT11
   dht.begin();
   
-  //iniciar acesso a rede Wi-Fi
+  //Wi-Fi access
   WiFi.begin(ssid, password);
   
   while (WiFi.status() != WL_CONNECTED) {
@@ -67,20 +71,20 @@ void setup() {
 
   Serial.println("Creating " + String(deviceID) + " entitie...");
   delay(2000);
-  //criar entidade no Helix (plug&play) 
+  //creating the device in the Helix Sandbox (plug&play) 
   orionCreateEntitie(deviceID);
   
 }
  
 void loop(){
 
-//zerar variávies
+//reset variables
   medianTemperature=0;
   totalTemperature=0;
   medianHumidity=0;
   totalHumidity=0;
 
-//looping para leitura do valor médio de temperatura e umidade
+//looping for calculating average temperature and humidity
   for(int i = 0; i < 5; i ++){
     totalHumidity  += dht.readHumidity();
     totalTemperature += dht.readTemperature(); 
@@ -92,7 +96,7 @@ void loop(){
     delay(250); 
   };
 
-//cálculo dos valores médios  
+//calculation of average values
   medianHumidity = totalHumidity/5;
   medianTemperature = totalTemperature/5;
   
@@ -103,7 +107,7 @@ void loop(){
   sprintf(msgHumidity,"%d",medianHumidity);
   sprintf(msgTemperature,"%d",medianTemperature);
 
-  //update dos dados no Helix
+  //update 
   Serial.println("Updating data in orion...");
   orionUpdate(deviceID, msgTemperature, msgHumidity);
 
@@ -115,14 +119,14 @@ void loop(){
   Serial.println("Finished updating data in orion...");
 }
 
-//função para a criação da entidade (plug&play)
+//plug&play
 void orionCreateEntitie(String entitieName) {
 
     String bodyRequest = "{\"id\": \"" + entitieName + "\", \"type\": \"sensor\", \"temperature\": { \"value\": \"0\", \"type\": \"integer\"},\"humidity\": { \"value\": \"0\", \"type\": \"integer\"}}";
     httpRequest("/entities", bodyRequest);
 }
 
-//função de update
+//update 
 void orionUpdate(String entitieID, String temperature, String humidity){
 
     String bodyRequest = "{\"temperature\": { \"value\": \""+ temperature + "\", \"type\": \"integer\"}, \"humidity\": { \"value\": \""+ humidity +"\", \"type\": \"integer\"}}";
@@ -130,7 +134,7 @@ void orionUpdate(String entitieID, String temperature, String humidity){
     httpRequest(pathRequest, bodyRequest);
 }
 
-//função request
+//request
 void httpRequest(String path, String data)
 {
   String payload = makeRequest(path, data);
