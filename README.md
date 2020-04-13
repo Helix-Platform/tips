@@ -6,7 +6,11 @@ Here you will find code examples to start using the Helix Sandbox with the most 
 
 This tutorial can help you to understand the most popular REST methods used on CEF Context Broker:
 
-#### :one: Create a Temperature and Humidity sensor with DHT 11 e NodeMCU ESP8266 v2/v3:
+#### :one: Creating a Temperature and Humidity Sensor with DHT 22 and NodeMCU ESP8266 v2/v3:
+
+#### About
+
+The code below automatically creates the sensor in the Helix Sandbox and sends the temperature and humidity from DHT 22 to Helix using the restful message with the POST method. Moreover, this code uses the force update to guarantee the storage persistence on the database. 
 
 ```C++
 #include <ESP8266WiFi.h> 
@@ -166,5 +170,5 @@ Serial.println(bodyRequest);
   return response;
 }
 ```
-#### :two: Creating an entitie:
+
 
