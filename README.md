@@ -13,6 +13,12 @@ This tutorial can help you to understand the most popular REST methods used on C
 The code below automatically creates the sensor in the Helix Sandbox and sends the temperature and humidity from DHT 22 to Helix using the restful message with the POST method. Moreover, this code uses the force update to guarantee the storage persistence on the database. 
 You can use the Arduino IDE to create the code for your NodeMCU.
 
+#### Electrical Diagram
+
+![](../images/nodemcu_dht11_to_helix.png)
+
+#### Code
+
 ```C++
 #include <ESP8266WiFi.h> 
 #include <ESP8266HTTPClient.h>
