@@ -1,9 +1,4 @@
-## NodeMCU
-
-## About
-This tutorial can help you to connect to Helix a temperature and humidity sensor implemented in a NodeMCU:
-
-#### :one: Creating a Temperature and Humidity Sensor with DHT 11 and NodeMCU ESP8266 v2/v3:
+## Creating a Temperature and Humidity Sensor with DHT 11 and NodeMCU ESP8266 v2/v3:
 
 #### About
 
