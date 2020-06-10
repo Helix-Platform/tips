@@ -173,5 +173,7 @@ Serial.println(bodyRequest);
   return response;
 }
 ```
-
+Enjoy and explore all Helix features with NodeMCU.
+#### © Helix Platform 2020, All rights reserved.
+<a href="https://gethelix.org">Helix</a> for a better world! 
 
