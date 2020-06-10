@@ -1,8 +1,8 @@
-## Creating a Temperature and Humidity Sensor with DHT 11 and NodeMCU ESP8266 v2/v3:
+## Creating Sensor with DHT-11 and NodeMCU ESP8266 v2/v3
 
 #### About
 
-The code below automatically creates the sensor in the Helix Sandbox and sends the temperature and humidity from DHT 22 to Helix using the restful message with the POST method. Moreover, this code uses the force update to guarantee the storage persistence on the database. 
+The code below automatically creates the sensor in the Helix Sandbox and sends the temperature and humidity from DHT-11 to Helix using the restful message with the POST method. Moreover, this code uses the force update to guarantee the storage persistence on the database. 
 You can use the Arduino IDE to create the code for your NodeMCU.
 
 #### Electrical Diagram
