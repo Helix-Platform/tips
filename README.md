@@ -1,4 +1,4 @@
-## Creating Sensor with DHT-11 and NodeMCU ESP8266 v2/v3
+## DHT-11 and NodeMCU ESP8266 v2/v3
 
 #### About
 
