@@ -1,4 +1,4 @@
-## Code samples for integrating IoT devices with Helix Sandbox NG
+## NodeMCU
 
 Here you will find code examples to start using the Helix Sandbox with the most used IoT devices.
 
