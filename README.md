@@ -1,5 +1,4 @@
-## DHT-11 and NodeMCU ESP8266 v2/v3
-
+## NodeMCU to Helix 
 #### About
 
 The code below automatically creates the sensor in the Helix Sandbox and sends the temperature and humidity from DHT-11 to Helix using the restful message with the POST method. Moreover, this code uses the force update to guarantee the storage persistence on the database. 
