@@ -32,7 +32,7 @@ You can use the Arduino IDE to create the code for your NodeMCU.
 //Helix IP Address 
 const char* orionAddressPath = "IP_HELIX:1026/v2";
 
-//Device ID (example: urn:ngsi-ld:sensor:0001) 
+//Device ID (example: urn:ngsi-ld:entity:001) 
 const char* deviceID = "ID_DEVICE";
 
 //Wi-Fi Credentials
@@ -122,14 +122,14 @@ void loop(){
 //plug&play
 void orionCreateEntitie(String entitieName) {
 
-    String bodyRequest = "{\"id\": \"" + entitieName + "\", \"type\": \"sensor\", \"temperature\": { \"value\": \"0\", \"type\": \"integer\"},\"humidity\": { \"value\": \"0\", \"type\": \"integer\"}}";
+    String bodyRequest = "{\"id\": \"" + entitieName + "\", \"type\": \"iot\", \"temperature\": { \"value\": \" 0\", \"type\": \"float"},\"humidity\": { \"value\": \" 0\", \"type\": \"float\"}}";
     httpRequest("/entities", bodyRequest);
 }
 
 //update 
 void orionUpdate(String entitieID, String temperature, String humidity){
 
-    String bodyRequest = "{\"temperature\": { \"value\": \""+ temperature + "\", \"type\": \"integer\"}, \"humidity\": { \"value\": \""+ humidity +"\", \"type\": \"integer\"}}";
+    String bodyRequest = "{\"temperature\": { \"value\": \""+ temperature + "\", \"type\": \"float\"}, \"humidity\": { \"value\": \""+ humidity +"\", \"type\": \"float\"}}";
     String pathRequest = "/entities/" + entitieID + "/attrs?options=forcedUpdate";
     httpRequest(pathRequest, bodyRequest);
 }
